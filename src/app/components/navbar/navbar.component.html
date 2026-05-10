@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">✈️ Viajes App</a>
+
+    <div class="collapse navbar-collapse show">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item" *ngIf="obtenerCliente()">
+          <a class="nav-link" routerLink="/reservas">Reservas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">About</a>
+        </li>
+      </ul>
+
+      <span class="navbar-text text-white me-3" *ngIf="obtenerCliente()">
+        Bienvenido, {{ obtenerCliente() }}
+      </span>
+
+      <button
+        class="btn btn-outline-light"
+        *ngIf="obtenerCliente()"
+        (click)="cerrarSesion()">
+        Salir
+      </button>
+    </div>
+  </div>
+</nav>
