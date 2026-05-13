@@ -8,19 +8,27 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  cliente: string = '';
+  usuario: string = '';
+  password: string = '';
+  mensajeError: string = '';
 
   constructor(private router: Router) {}
 
   ingresar() {
-    if (this.cliente.trim() !== '') {
-      localStorage.setItem('cliente', this.cliente);
+    if (this.usuario === 'admin' && this.password === '1234') {
+      // Guardar usuario en localStorage
+      localStorage.setItem('cliente', this.usuario);
+
+      // Limpiar mensaje de error
+      this.mensajeError = '';
+
+      // Redirigir a la página de reservas
       this.router.navigate(['/reservas']);
     } else {
-      alert('Ingrese su nombre');
+      this.mensajeError = 'Usuario o contraseña incorrectos';
     }
   }
 }
